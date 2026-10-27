@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>longtianxp</title>
+<meta name="description" content="longtianxp 的个人网站：收藏与整理。">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "PingFang SC", "Helvetica Neue", "Microsoft YaHei", Arial, sans-serif;
+    color: #1d1d1f;
+    background: #fff;
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.5;
+  }
+  a { color: #0066cc; text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .nav {
+    position: sticky; top: 0; z-index: 10;
+    background: rgba(251, 251, 253, 0.8);
+    backdrop-filter: saturate(180%) blur(20px);
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
+    border-bottom: 1px solid rgba(0,0,0,0.08);
+  }
+  .nav-inner {
+    max-width: 980px; margin: 0 auto; height: 52px;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 22px;
+  }
+  .nav .brand { font-size: 19px; font-weight: 600; color: #1d1d1f; letter-spacing: -0.01em; }
+  .nav .links a { color: #1d1d1f; opacity: 0.85; font-size: 14px; margin-left: 28px; }
+  .nav .links a:hover { opacity: 1; text-decoration: none; }
+  .hero {
+    background: #000; color: #f5f5f7; text-align: center;
+    padding: 110px 22px 120px;
+  }
+  .hero h1 {
+    font-size: clamp(40px, 7vw, 72px); font-weight: 700;
+    letter-spacing: -0.015em; line-height: 1.08;
+  }
+  .hero p {
+    margin-top: 18px; font-size: clamp(18px, 2.6vw, 26px);
+    color: #a1a1a6; font-weight: 400; letter-spacing: -0.01em;
+  }
+  .section { background: #f5f5f7; padding: 90px 22px; text-align: center; }
+  .section .card {
+    max-width: 820px; margin: 0 auto; background: #fff; border-radius: 18px;
+    padding: 56px 40px; box-shadow: 0 4px 24px rgba(0,0,0,0.04);
+  }
+  .section h2 { font-size: clamp(30px, 4.5vw, 44px); font-weight: 700; letter-spacing: -0.012em; }
+  .section p { margin-top: 14px; font-size: 18px; color: #6e6e73; }
+  .btn {
+    display: inline-block; margin-top: 26px; background: #0071e3; color: #fff;
+    font-size: 16px; padding: 11px 24px; border-radius: 980px;
+  }
+  .btn:hover { background: #0077ed; text-decoration: none; }
+  .btn.disabled { background: #e8e8ed; color: #86868b; pointer-events: none; }
+  footer {
+    background: #f5f5f7; border-top: 1px solid #d2d2d7;
+    padding: 26px 22px; font-size: 12px; color: #6e6e73;
+  }
+  footer .foot-inner { max-width: 980px; margin: 0 auto; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
+</style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="nav-inner">
+      <a class="brand" href="/">longtianxp</a>
+      <div class="links">
+        <a href="/">首页</a>
+        <a href="/bookmarks.html">书签</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <h1>收藏，即是再发现。</h1>
+    <p>把散落在时间线里的好内容，整理成册。</p>
+  </header>
+
+  <section class="section">
+    <div class="card">
+      <h2>推特书签整理</h2>
+      <p>我在 X 上收藏的推文，会按主题整理后放在这里，方便随时回看。每条保留作者与原始链接，只写摘要与要点，不搬运原文。</p>
+      <a class="btn disabled" href="/bookmarks.html">整理中，敬请期待</a>
+    </div>
+  </section>
+
+  <footer>
+    <div class="foot-inner">
+      <span>© 2026 longtianxp</span>
+      <span>本站由 GitHub Pages 托管</span>
+    </div>
+  </footer>
+</body>
+</html>
