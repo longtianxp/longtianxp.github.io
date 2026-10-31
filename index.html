@@ -3,83 +3,242 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BiliCosplay · longtianxp</title>
-<meta name="description" content="Telegram 频道 BiliCosplay 的入口页：图片在原频道查看，本站不转载。">
+<title>长天书屋 · Longtian Books — 把好书装进口袋</title>
+<meta name="description" content="长天书屋：个人精选书单与找书指南。文学、历史、经济、科技、心理、科幻六大分类，附正规找书与借阅入口。">
 <style>
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  body {
-    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "PingFang SC", "Helvetica Neue", "Microsoft YaHei", Arial, sans-serif;
-    color: #1d1d1f; background: #fff; -webkit-font-smoothing: antialiased; line-height: 1.5;
+  * { margin:0; padding:0; box-sizing:border-box; }
+  :root{
+    --navy:#131a22; --navy2:#232f3e; --orange:#febd69; --orange2:#f3a847;
+    --link:#007185; --price:#b12704; --bg:#eaeded; --card:#fff; --ink:#0f1111; --sub:#565959;
   }
-  a { text-decoration: none; }
-  .nav {
-    position: sticky; top: 0; z-index: 10;
-    background: rgba(251,251,253,0.8);
-    backdrop-filter: saturate(180%) blur(20px); -webkit-backdrop-filter: saturate(180%) blur(20px);
-    border-bottom: 1px solid rgba(0,0,0,0.08);
-  }
-  .nav-inner { max-width: 980px; margin: 0 auto; height: 52px; display: flex; align-items: center; justify-content: space-between; padding: 0 22px; }
-  .nav .brand { font-size: 19px; font-weight: 600; color: #1d1d1f; }
-  .nav .tag { font-size: 13px; color: #6e6e73; }
-  .hero { background: #000; color: #f5f5f7; text-align: center; padding: 110px 22px 100px; }
-  .hero .kicker { font-size: 15px; color: #2997ff; font-weight: 600; letter-spacing: 0.02em; }
-  .hero h1 { margin-top: 10px; font-size: clamp(40px, 7vw, 72px); font-weight: 700; letter-spacing: -0.015em; line-height: 1.08; }
-  .hero p { margin: 18px auto 0; max-width: 640px; font-size: clamp(17px, 2.5vw, 23px); color: #a1a1a6; }
-  .btn {
-    display: inline-block; margin-top: 34px; background: #0071e3; color: #fff;
-    font-size: 17px; padding: 13px 30px; border-radius: 980px;
-  }
-  .btn:hover { background: #0077ed; }
-  .section { background: #f5f5f7; padding: 80px 22px; }
-  .cards { max-width: 980px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 18px; }
-  .card { background: #fff; border-radius: 18px; padding: 38px 32px; box-shadow: 0 4px 24px rgba(0,0,0,0.04); }
-  .card h2 { font-size: 24px; font-weight: 700; letter-spacing: -0.01em; }
-  .card p { margin-top: 10px; font-size: 15px; color: #6e6e73; }
-  .card a.more { display: inline-block; margin-top: 16px; font-size: 15px; color: #0066cc; }
-  .card a.more:hover { text-decoration: underline; }
-  footer { background: #f5f5f7; border-top: 1px solid #d2d2d7; padding: 26px 22px; font-size: 12px; color: #6e6e73; }
-  .foot-inner { max-width: 980px; margin: 0 auto; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
+  body{ font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Helvetica Neue","Microsoft YaHei",Arial,sans-serif; background:var(--bg); color:var(--ink); -webkit-font-smoothing:antialiased; }
+  a{ text-decoration:none; color:inherit; }
+  /* 顶部导航（借鉴亚马逊式深色顶栏） */
+  .topbar{ background:var(--navy); color:#fff; position:sticky; top:0; z-index:50; }
+  .topbar-in{ max-width:1180px; margin:0 auto; display:flex; align-items:center; gap:14px; padding:10px 16px; flex-wrap:wrap; }
+  .logo{ font-size:21px; font-weight:700; letter-spacing:.02em; white-space:nowrap; }
+  .logo small{ display:block; font-size:10px; font-weight:400; color:#ccc; letter-spacing:.18em; }
+  .logo em{ color:var(--orange); font-style:normal; }
+  .search{ flex:1; min-width:200px; display:flex; background:#fff; border-radius:6px; overflow:hidden; border:3px solid transparent; }
+  .search:focus-within{ border-color:var(--orange2); }
+  .search input{ flex:1; border:0; outline:0; padding:10px 12px; font-size:15px; color:var(--ink); }
+  .search button{ border:0; background:var(--orange); width:52px; font-size:17px; cursor:pointer; }
+  .search button:hover{ background:var(--orange2); }
+  .mylist{ white-space:nowrap; font-size:14px; color:#fff; }
+  .mylist b{ color:var(--orange); font-size:16px; }
+  .catbar{ background:var(--navy2); }
+  .catbar-in{ max-width:1180px; margin:0 auto; display:flex; gap:4px; padding:6px 12px; overflow-x:auto; }
+  .catbar button{ background:none; border:1px solid transparent; color:#fff; font-size:14px; padding:6px 12px; border-radius:4px; cursor:pointer; white-space:nowrap; }
+  .catbar button:hover{ border-color:#fff; }
+  .catbar button.on{ background:#fff; color:var(--navy); font-weight:600; }
+  /* 主横幅 */
+  .hero{ background:linear-gradient(120deg,#0f2027,#203a43 55%,#2c5364); color:#fff; }
+  .hero-in{ max-width:1180px; margin:0 auto; padding:52px 20px 44px; }
+  .hero .kicker{ color:var(--orange); font-weight:600; letter-spacing:.14em; font-size:13px; }
+  .hero h1{ font-size:clamp(30px,5.4vw,50px); line-height:1.15; margin-top:10px; font-weight:700; }
+  .hero p{ margin-top:14px; color:#cfdde3; font-size:16px; max-width:620px; line-height:1.7; }
+  .hero .stats{ margin-top:22px; display:flex; gap:26px; flex-wrap:wrap; font-size:14px; color:#a9c3cc; }
+  .hero .stats b{ color:#fff; font-size:20px; display:block; }
+  .wrap{ max-width:1180px; margin:0 auto; padding:0 16px 10px; }
+  /* 区块 */
+  .section{ margin-top:18px; background:var(--card); border-radius:8px; padding:22px 20px 26px; }
+  .section h2{ font-size:21px; font-weight:700; display:flex; align-items:baseline; gap:10px; }
+  .section h2 .more{ font-size:13px; color:var(--link); font-weight:400; }
+  .section .sub{ color:var(--sub); font-size:13px; margin-top:4px; }
+  /* 畅销榜 */
+  .rank{ margin-top:16px; display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:14px; }
+  .rank-item{ display:flex; gap:12px; align-items:flex-start; padding:12px; border:1px solid #e3e6e6; border-radius:8px; }
+  .rank-no{ font-size:30px; font-weight:800; color:var(--orange2); line-height:1; min-width:36px; }
+  .rank-item h3{ font-size:16px; }
+  .rank-item p{ font-size:13px; color:var(--sub); margin-top:3px; line-height:1.5; }
+  /* 书籍网格 */
+  .toolbar{ display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; }
+  .toolbar select{ font-size:14px; padding:6px 8px; border-radius:6px; border:1px solid #d5d9d9; background:#f0f2f2; }
+  .grid{ margin-top:18px; display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); gap:18px; }
+  .book{ border:1px solid #e3e6e6; border-radius:8px; padding:14px; display:flex; flex-direction:column; background:#fff; transition:box-shadow .15s; }
+  .book:hover{ box-shadow:0 6px 18px rgba(15,17,17,.12); }
+  .cover{ height:210px; border-radius:4px 8px 8px 4px; position:relative; color:#fff; padding:16px 14px; display:flex; flex-direction:column; overflow:hidden;
+    box-shadow:inset 4px 0 8px rgba(0,0,0,.18); }
+  .cover::after{ content:""; position:absolute; left:0; top:0; bottom:0; width:5px; background:rgba(0,0,0,.22); }
+  .cover .pub{ font-size:10px; letter-spacing:.3em; opacity:.85; }
+  .cover .ct{ margin-top:14px; font-size:23px; font-weight:700; line-height:1.3; writing-mode:vertical-rl; letter-spacing:.12em; max-height:128px; align-self:center; }
+  .cover .ca{ margin-top:auto; font-size:12px; opacity:.92; }
+  .book h3{ font-size:16px; margin-top:12px; line-height:1.4; }
+  .book .author{ font-size:13px; color:var(--link); margin-top:2px; }
+  .stars{ color:#f0a13c; font-size:13px; margin-top:5px; }
+  .stars span{ color:var(--link); margin-left:5px; }
+  .blurb{ font-size:13px; color:#333; line-height:1.6; margin-top:7px; flex:1; }
+  .fmt{ font-size:12px; color:var(--sub); margin-top:8px; }
+  .price{ color:var(--price); font-size:19px; font-weight:700; margin-top:4px; }
+  .price small{ font-size:12px; color:var(--sub); font-weight:400; }
+  .addbtn{ margin-top:10px; background:#ffd814; border:1px solid #fcd200; border-radius:980px; padding:8px 0; font-size:14px; cursor:pointer; }
+  .addbtn:hover{ background:#f7ca00; }
+  .addbtn.added{ background:#e7f4e4; border-color:#067d62; color:#067d62; }
+  .empty{ grid-column:1/-1; text-align:center; color:var(--sub); padding:36px 0; font-size:15px; }
+  /* 找书资源 */
+  .res{ margin-top:16px; display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:14px; }
+  .res a{ display:block; border:1px solid #e3e6e6; border-radius:8px; padding:16px; }
+  .res a:hover{ border-color:var(--orange2); box-shadow:0 4px 14px rgba(15,17,17,.08); }
+  .res h3{ font-size:16px; color:var(--link); }
+  .res p{ font-size:13px; color:var(--sub); margin-top:5px; line-height:1.6; }
+  .res .tag{ display:inline-block; font-size:11px; background:#fef8e8; border:1px solid #f3d27a; color:#7a5b00; border-radius:4px; padding:1px 6px; margin-top:8px; }
+  footer{ max-width:1180px; margin:18px auto 0; padding:22px 20px 34px; color:var(--sub); font-size:12px; line-height:1.8; }
+  footer .fl{ display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px; border-top:1px solid #d5d9d9; padding-top:16px; }
+  @media (max-width:560px){ .cover{ height:180px; } .grid{ grid-template-columns:repeat(auto-fill,minmax(158px,1fr)); gap:12px; } }
 </style>
 </head>
 <body>
-  <nav class="nav">
-    <div class="nav-inner">
-      <a class="brand" href="/">longtianxp</a>
-      <span class="tag">频道入口</span>
-    </div>
-  </nav>
 
-  <header class="hero">
-    <div class="kicker">Telegram 频道</div>
-    <h1>BiliCosplay</h1>
-    <p>一个分享 Cosplay 写真图片的 Telegram 频道。图片都在原频道里，这里只做一扇门——点开，直达。</p>
-    <a class="btn" href="https://t.me/BiliCosplay" target="_blank" rel="noopener">打开频道</a>
-  </header>
+<header class="topbar">
+  <div class="topbar-in">
+    <a class="logo" href="/">长天<em>书屋</em><small>LONGTIAN BOOKS</small></a>
+    <div class="search">
+      <input id="q" type="search" placeholder="搜索书名或作者，如：三体 / 余华" aria-label="搜索书籍">
+      <button id="qbtn" aria-label="搜索">🔍</button>
+    </div>
+    <div class="mylist">📚 我的书单 <b id="favCount">0</b> 本</div>
+  </div>
+  <nav class="catbar"><div class="catbar-in" id="cats"></div></nav>
+</header>
+
+<section class="hero">
+  <div class="hero-in">
+    <div class="kicker">个人精选 · 持续更新</div>
+    <h1>把好书，装进口袋。</h1>
+    <p>这里是长天书屋：把这些年真正读完、读懂、愿意再读一遍的书，按亚马逊式的分类与榜单整理出来。每本书都附一句真心话推荐，再往下还有正规找书与借阅入口。</p>
+    <div class="stats">
+      <div><b id="statBooks">25</b>本精选图书</div>
+      <div><b>6</b>大分类</div>
+      <div><b>8</b>个找书入口</div>
+      <div><b>0</b>元，免费浏览</div>
+    </div>
+  </div>
+</section>
+
+<main class="wrap">
 
   <section class="section">
-    <div class="cards">
-      <div class="card">
-        <h2>在 App 里看</h2>
-        <p>装了 Telegram 的话，直接跳转到频道页，图片按原图质量加载，还能顺手订阅更新。</p>
-        <a class="more" href="https://t.me/BiliCosplay" target="_blank" rel="noopener">t.me/BiliCosplay &gt;</a>
-      </div>
-      <div class="card">
-        <h2>在网页里看</h2>
-        <p>不想开 App 也行，Telegram 提供公开网页预览，能直接翻看频道最近发布的内容。</p>
-        <a class="more" href="https://t.me/s/BiliCosplay" target="_blank" rel="noopener">打开网页预览 &gt;</a>
-      </div>
-      <div class="card">
-        <h2>关于本站</h2>
-        <p>本站不保存、不转载频道里的任何图片，只提供入口链接。图片版权归各自的 coser 与摄影师所有。</p>
-      </div>
+    <h2>🏆 畅销榜 · 本周热读</h2>
+    <p class="sub">按读者口碑与热度综合排序，点任意一本可在下方书架里找到它。</p>
+    <div class="rank" id="rank"></div>
+  </section>
+
+  <section class="section">
+    <div class="toolbar">
+      <h2>📖 全部书籍 <span class="more" id="countNote"></span></h2>
+      <label style="font-size:14px;color:var(--sub)">排序
+        <select id="sort">
+          <option value="hot">综合推荐</option>
+          <option value="rating">评分从高到低</option>
+          <option value="plow">价格从低到高</option>
+          <option value="phigh">价格从高到低</option>
+        </select>
+      </label>
+    </div>
+    <p class="sub">封面为样式示意；评分为读者口碑参考；价格为纸书参考价，请以正规渠道实时价格为准。</p>
+    <div class="grid" id="grid"></div>
+  </section>
+
+  <section class="section">
+    <h2>🧭 找书资源 · 正规入口</h2>
+    <p class="sub">想读哪本书，先从这些正规渠道找：能买、能借、能读公版书的都有。支持正版，阅读无忧。</p>
+    <div class="res">
+      <a href="https://openlibrary.org" target="_blank" rel="noopener"><h3>Open Library 开放图书馆</h3><p>互联网档案馆旗下的开放书目库，可查版本、借阅部分电子书，书目信息最全。</p><span class="tag">查书目 · 借阅</span></a>
+      <a href="https://www.gutenberg.org" target="_blank" rel="noopener"><h3>Project Gutenberg 古登堡计划</h3><p>七万多本公版经典免费下载，英文原著与世界名著的宝库，完全合法。</p><span class="tag">公版书 · 免费</span></a>
+      <a href="https://archive.org" target="_blank" rel="noopener"><h3>Internet Archive 互联网档案馆</h3><p>海量书籍、影音与网页存档，部分图书可在线借阅，老书绝版书常有惊喜。</p><span class="tag">存档 · 借阅</span></a>
+      <a href="https://weread.qq.com" target="_blank" rel="noopener"><h3>微信读书</h3><p>中文电子书主力平台，热门新书多，组队与读书时长玩法适合坚持阅读。</p><span class="tag">中文电子书</span></a>
+      <a href="https://www.amazon.cn" target="_blank" rel="noopener"><h3>亚马逊 · Kindle 商店</h3><p>外文原版与电子书传统强项，找英文书和进口版本时先来这里比价。</p><span class="tag">购书 · 原版</span></a>
+      <a href="https://book.jd.com" target="_blank" rel="noopener"><h3>京东图书</h3><p>中文纸书自营渠道，活动价频繁，物流快，囤书季值得蹲一蹲。</p><span class="tag">购书 · 纸书</span></a>
+      <a href="https://book.dangdang.com" target="_blank" rel="noopener"><h3>当当网</h3><p>老牌图书电商，中文图书品类深，教材教辅与童书尤其齐全。</p><span class="tag">购书 · 纸书</span></a>
+      <a href="https://www.nlc.cn" target="_blank" rel="noopener"><h3>中国国家图书馆</h3><p>国家数字图书馆可在线查阅大量古籍、民国文献与学术资源，免费注册。</p><span class="tag">古籍 · 学术</span></a>
     </div>
   </section>
 
-  <footer>
-    <div class="foot-inner">
-      <span>© 2026 longtianxp</span>
-      <span>本站由 GitHub Pages 托管</span>
-    </div>
-  </footer>
+</main>
+
+<footer>
+  <div class="fl">
+    <span>长天书屋 · Longtian Books — 个人读书分享页</span>
+    <span>本站不销售图书、不保存电子书文件；书目信息仅供参考，请通过正规渠道购买或借阅。</span>
+  </div>
+  <div style="margin-top:8px">书单灵感来自日常阅读与网络公开推荐；如涉及版权问题，请联系站长处理。</div>
+</footer>
+
+<script>
+const BOOKS = [
+ {t:"红楼梦",a:"曹雪芹",c:"文学小说",r:9.7,n:"12.4万",p:59,f:"精装 · 全二册",g:["#7a1f1f","#a63d2a"],b:"中国古典小说的巅峰，一部写尽世情与命运的百科全书，值得每隔十年重读一次。"},
+ {t:"活着",a:"余华",c:"文学小说",r:9.4,n:"21.8万",p:28,f:"平装",g:["#274156","#4a6fa5"],b:"福贵的一生苦难深重，读完却只剩对生命的敬意。薄薄一本，后劲极大。"},
+ {t:"百年孤独",a:"加西亚·马尔克斯",c:"文学小说",r:9.3,n:"15.6万",p:39.5,f:"精装",g:["#8a6d1d","#c9a227"],b:"布恩迪亚家族七代人的孤独轮回，魔幻现实主义的源头，名字多但绝对值得。"},
+ {t:"平凡的世界",a:"路遥",c:"文学小说",r:9.0,n:"11.2万",p:68,f:"平装 · 全三册",g:["#5b4a2f","#8a6d3b"],b:"孙少安与孙少平的奋斗史，是给每一个普通人的励志书，朴素而有力量。"},
+ {t:"白夜行",a:"东野圭吾",c:"文学小说",r:9.1,n:"18.9万",p:39.5,f:"精装",g:["#23232e","#4b4b63"],b:"一场横跨十九年的共生悲剧，没有一句“我爱你”，却处处是绝望的爱。"},
+ {t:"围城",a:"钱钟书",c:"文学小说",r:8.9,n:"9.7万",p:35,f:"平装",g:["#3c5a4c","#5f8a70"],b:"“城外的人想进去，城里的人想出来。”钱先生的讽刺幽默，句句是金句。"},
+ {t:"挪威的森林",a:"村上春树",c:"文学小说",r:8.5,n:"14.3万",p:38,f:"精装",g:["#2e4a3a","#4c7a5d"],b:"青春、失去与自我救赎。适合在某个安静的年纪，慢慢读完。"},
+ {t:"三体",a:"刘慈欣",c:"科幻奇幻",r:8.9,n:"25.1万",p:32,f:"平装",g:["#101d42","#274690"],b:"中国科幻的里程碑。“给岁月以文明”，宇宙尺度下的文明博弈震撼人心。"},
+ {t:"流浪地球",a:"刘慈欣",c:"科幻奇幻",r:8.8,n:"6.4万",p:28,f:"平装 · 短篇集",g:["#3a2b52","#5d439a"],b:"带着地球去流浪的中国式浪漫，同名电影的原作，短篇篇篇硬核。"},
+ {t:"人类简史",a:"尤瓦尔·赫拉利",c:"历史人文",r:9.2,n:"16.8万",p:45,f:"平装",g:["#7a4a21","#b07a3f"],b:"从认知革命到科学革命，重新理解“虚构故事”如何塑造了人类社会。"},
+ {t:"万历十五年",a:"黄仁宇",c:"历史人文",r:9.0,n:"8.9万",p:28,f:"平装",g:["#5a2d2d","#8a4a3a"],b:"1587，无关紧要的一年，却照见一个王朝的制度困局。大历史观的典范。"},
+ {t:"明朝那些事儿",a:"当年明月",c:"历史人文",r:9.2,n:"13.5万",p:35,f:"平装",g:["#6e2f1d","#a34a28"],b:"把明史写成畅销小说的传奇，幽默通俗，是很多人爱上历史的起点。"},
+ {t:"中国近代史",a:"徐中约",c:"历史人文",r:9.3,n:"4.1万",p:68,f:"精装",g:["#33424f","#5a7186"],b:"公认最扎实的中国近代史著作之一，视野宏大，叙述克制而清晰。"},
+ {t:"未来简史",a:"尤瓦尔·赫拉利",c:"历史人文",r:8.5,n:"7.6万",p:42,f:"平装",g:["#14424e","#1f6a7d"],b:"当数据主义遇上智人，未来的人类将何去何从？发人深省又非常好读。"},
+ {t:"穷查理宝典",a:"彼得·考夫曼 编",c:"经济管理",r:9.2,n:"5.8万",p:79,f:"精装",g:["#1f3d2b","#33691e"],b:"查理·芒格的思维模型合集多读几遍，对投资和人生的理解都会不一样。"},
+ {t:"原则",a:"瑞·达利欧",c:"经济管理",r:8.3,n:"6.9万",p:59,f:"精装",g:["#22252e","#45506b"],b:"桥水创始人的人生与工作原则清单，适合当工具书随时翻查。"},
+ {t:"富爸爸穷爸爸",a:"罗伯特·清崎",c:"经济管理",r:8.3,n:"9.2万",p:32,f:"平装",g:["#4a2d52","#74428a"],b:"财商启蒙的经典一课：资产与负债的区别，越早明白越好。"},
+ {t:"时间简史",a:"史蒂芬·霍金",c:"科学技术",r:8.8,n:"10.5万",p:32,f:"平装 · 插图版",g:["#0d2137","#1d4e6b"],b:"从大爆炸到黑洞，霍金用最通俗的语言讲最深的宇宙问题。"},
+ {t:"浪潮之巅",a:"吴军",c:"科学技术",r:9.0,n:"5.2万",p:49,f:"平装",g:["#123a4d","#1f6a8a"],b:"百年科技产业史的兴衰录，理解巨头命运与时代浪潮的绝佳读本。"},
+ {t:"数学之美",a:"吴军",c:"科学技术",r:8.7,n:"4.6万",p:36,f:"平装",g:["#2f4858","#4a7596"],b:"原来搜索、翻译背后的数学可以这么美，工程师与文科生都能读。"},
+ {t:"思考，快与慢",a:"丹尼尔·卡尼曼",c:"心理成长",r:8.2,n:"8.1万",p:49,f:"精装",g:["#5c374c","#8a5570"],b:"系统1与系统2的经典划分，看清自己每天都在犯的认知偏差。"},
+ {t:"被讨厌的勇气",a:"岸见一郎 · 古贺史健",c:"心理成长",r:8.6,n:"12.7万",p:36,f:"平装",g:["#716040","#a68a54"],b:"阿德勒心理学的对话体入门：“一切烦恼都来自人际关系”，扎心但治愈。"},
+ {t:"非暴力沟通",a:"马歇尔·卢森堡",c:"心理成长",r:8.6,n:"6.3万",p:35,f:"平装",g:["#2d5a4a","#478a70"],b:"观察、感受、需要、请求四步法，把冲突说成连接，实用度极高。"},
+ {t:"心流",a:"米哈里·契克森米哈赖",c:"心理成长",r:8.3,n:"4.9万",p:42,f:"平装",g:["#274156","#3f6d8e"],b:"最优体验的心理学：如何进入心流，让工作与生活都更有幸福感。"},
+ {t:"少有人走的路",a:"M.斯科特·派克",c:"心理成长",r:8.4,n:"7.8万",p:32,f:"平装",g:["#4d3b2a","#7a5c3e"],b:"“人生苦难重重”，自律、爱与成长的经典心理读物，常读常新。"}
+];
+const CATS = ["全部","文学小说","历史人文","经济管理","科学技术","心理成长","科幻奇幻"];
+let cat="全部", favs=new Set(JSON.parse(localStorage.getItem("lt_favs")||"[]"));
+const $=s=>document.querySelector(s);
+function stars(r){ const f=Math.round(r/2); return "★★★★★".slice(0,f)+"☆☆☆☆☆".slice(0,5-f); }
+function renderCats(){
+  $("#cats").innerHTML = CATS.map(c=>`<button data-c="${c}" class="${c===cat?'on':''}">${c}</button>`).join("");
+  document.querySelectorAll("#cats button").forEach(b=>b.onclick=()=>{cat=b.dataset.c;renderCats();render();});
+}
+function renderRank(){
+  const top=[...BOOKS].sort((x,y)=>y.r-x.r).slice(0,5);
+  $("#rank").innerHTML = top.map((b,i)=>`<div class="rank-item"><div class="rank-no">${i+1}</div><div><h3>${b.t}</h3><p>${b.a} · 评分 ${b.r}<br>${b.b.slice(0,34)}…</p></div></div>`).join("");
+}
+function render(){
+  const q=$("#q").value.trim();
+  let list=BOOKS.filter(b=>(cat==="全部"||b.c===cat)&&(!q||b.t.includes(q)||b.a.includes(q)));
+  const s=$("#sort").value;
+  if(s==="rating") list.sort((x,y)=>y.r-x.r);
+  if(s==="plow") list.sort((x,y)=>x.p-y.p);
+  if(s==="phigh") list.sort((x,y)=>y.p-x.p);
+  if(s==="hot") list.sort((x,y)=>y.r-x.r);
+  $("#countNote").textContent = `· 共 ${list.length} 本`;
+  $("#grid").innerHTML = list.length? list.map(b=>{
+    const added=favs.has(b.t);
+    return `<article class="book">
+      <div class="cover" style="background:linear-gradient(150deg,${b.g[0]},${b.g[1]})">
+        <div class="pub">长天书屋 · 精选</div><div class="ct">${b.t}</div><div class="ca">${b.a} 著</div>
+      </div>
+      <h3>${b.t}</h3><div class="author">${b.a}</div>
+      <div class="stars">${stars(b.r)} ${b.r}<span>${b.n} 条评价</span></div>
+      <p class="blurb">${b.b}</p>
+      <div class="fmt">${b.c} · ${b.f}</div>
+      <div class="price">¥${b.p} <small>参考价</small></div>
+      <button class="addbtn ${added?'added':''}" data-t="${b.t}">${added?'✓ 已在书单':'加入书单'}</button>
+    </article>`;}).join("") : `<div class="empty">没有找到符合条件的书，换个关键词试试。</div>`;
+  document.querySelectorAll(".addbtn").forEach(btn=>btn.onclick=()=>{
+    const t=btn.dataset.t;
+    favs.has(t)?favs.delete(t):favs.add(t);
+    localStorage.setItem("lt_favs",JSON.stringify([...favs]));
+    $("#favCount").textContent=favs.size; render();
+  });
+  $("#favCount").textContent=favs.size;
+}
+$("#qbtn").onclick=render;
+$("#q").addEventListener("input",render);
+$("#sort").onchange=render;
+$("#statBooks").textContent=BOOKS.length;
+renderCats(); renderRank(); render();
+</script>
 </body>
 </html>
