@@ -45,7 +45,7 @@
   .section h2{ font-size:21px; font-weight:700; display:flex; align-items:baseline; gap:10px; }
   .section h2 .more{ font-size:13px; color:var(--link); font-weight:400; }
   .section .sub{ color:var(--sub); font-size:13px; margin-top:4px; }
-  /* 畅销榜 */
+  /* 热门榜 */
   .rank{ margin-top:16px; display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:14px; }
   .rank-item{ display:flex; gap:12px; align-items:flex-start; padding:12px; border:1px solid #e3e6e6; border-radius:8px; }
   .rank-no{ font-size:30px; font-weight:800; color:var(--orange2); line-height:1; min-width:36px; }
@@ -84,6 +84,22 @@
   .res h3{ font-size:16px; color:var(--link); }
   .res p{ font-size:13px; color:var(--sub); margin-top:5px; line-height:1.6; }
   .res .tag{ display:inline-block; font-size:11px; background:#fef8e8; border:1px solid #f3d27a; color:#7a5b00; border-radius:4px; padding:1px 6px; margin-top:8px; }
+
+  .freebtn.info{ background:#eef2f3; color:#203a43; }
+  .reader{ position:fixed; inset:0; background:rgba(10,18,22,.72); display:none; z-index:60; }
+  .reader.open{ display:flex; align-items:center; justify-content:center; }
+  .reader-box{ background:#fbf7ee; width:min(880px,94vw); height:min(92vh,1000px); border-radius:12px; display:flex; flex-direction:column; overflow:hidden; box-shadow:0 18px 60px rgba(0,0,0,.4); }
+  .reader-head{ padding:14px 18px; background:#203a43; color:#fff; display:flex; gap:10px; align-items:center; flex-wrap:wrap; }
+  .reader-head .rt{ font-size:18px; font-weight:700; }
+  .reader-head .ra{ color:#a9c3cc; font-size:13px; }
+  .reader-head select{ padding:6px 8px; border-radius:6px; max-width:300px; }
+  .reader-head button{ padding:6px 12px; border-radius:6px; border:0; cursor:pointer; background:#fff; }
+  .reader-head .x{ margin-left:auto; background:#f0f3f3; }
+  .reader-body{ flex:1; overflow-y:auto; padding:26px clamp(18px,5vw,54px); font-size:18px; line-height:2; color:#2b2118; font-family:"Noto Serif SC","Songti SC",serif; }
+  .reader-body h3{ font-size:21px; margin-bottom:16px; line-height:1.5; }
+  .reader-body p{ margin:0 0 1em; text-indent:2em; }
+  .reader-foot{ padding:12px 18px; border-top:1px solid #e3dcc9; display:flex; gap:10px; justify-content:space-between; background:#f4efe2; }
+  .reader-foot button{ padding:8px 18px; border-radius:6px; border:1px solid #c9c0a6; background:#fff; cursor:pointer; }
   footer{ max-width:1180px; margin:18px auto 0; padding:22px 20px 34px; color:var(--sub); font-size:12px; line-height:1.8; }
   footer .fl{ display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px; border-top:1px solid #d5d9d9; padding-top:16px; }
   @media (max-width:560px){ .cover{ height:180px; } .grid{ grid-template-columns:repeat(auto-fill,minmax(158px,1fr)); gap:12px; } }
@@ -108,11 +124,11 @@
   <div class="hero-in">
     <div class="kicker">个人精选 · 持续更新</div>
     <h1>把好书，装进口袋。</h1>
-    <p>这里是长天书屋：把这些年真正读完、读懂、愿意再读一遍的书，按分类与榜单整理出来。每本书都附一句真心话推荐和免费阅读入口。本站全部免费，不卖书、不收费。</p>
+    <p>这里是长天书屋：把这些年真正读完、读懂、愿意再读一遍的书，按分类与榜单整理出来。带「站内全文」的公版经典，点开书就能直接在网页里看全本。本站全部免费，不卖书、不收费，也没有任何买卖入口。</p>
     <div class="stats">
       <div><b id="statBooks">25</b>本精选图书</div>
       <div><b>6</b>大分类</div>
-      <div><b>6</b>个免费找书入口</div>
+      <div><b>4</b>本站内可读全文</div>
       <div><b>0</b>元，免费浏览</div>
     </div>
   </div>
@@ -121,7 +137,7 @@
 <main class="wrap">
 
   <section class="section">
-    <h2>🏆 畅销榜 · 本周热读</h2>
+    <h2>🏆 热门榜 · 本周热读</h2>
     <p class="sub">按读者口碑与热度综合排序，点任意一本可在下方书架里找到它。</p>
     <div class="rank" id="rank"></div>
   </section>
@@ -142,12 +158,11 @@
 
   <section class="section">
     <h2>🧭 找书资源 · 正规入口</h2>
-    <p class="sub">想读哪本书，先从这些免费渠道找：能在线读、能借阅、能下载公版书的都有，全部免费。</p>
+    <p class="sub">站内没有全文的书，可以从这些非营利渠道找：能在线读、能借阅、能下载公版书的都有，全部免费。</p>
     <div class="res">
       <a href="https://openlibrary.org" target="_blank" rel="noopener"><h3>Open Library 开放图书馆</h3><p>互联网档案馆旗下的开放书目库，可查版本、借阅部分电子书，书目信息最全。</p><span class="tag">查书目 · 借阅</span></a>
       <a href="https://www.gutenberg.org" target="_blank" rel="noopener"><h3>Project Gutenberg 古登堡计划</h3><p>七万多本公版经典免费下载，英文原著与世界名著的宝库，完全合法。</p><span class="tag">公版书 · 免费</span></a>
       <a href="https://archive.org" target="_blank" rel="noopener"><h3>Internet Archive 互联网档案馆</h3><p>海量书籍、影音与网页存档，部分图书可在线借阅，老书绝版书常有惊喜。</p><span class="tag">存档 · 借阅</span></a>
-      <a href="https://weread.qq.com" target="_blank" rel="noopener"><h3>微信读书</h3><p>中文电子书主力平台，热门新书多，组队与读书时长玩法适合坚持阅读。</p><span class="tag">中文电子书</span></a>
       <a href="https://zh.wikisource.org" target="_blank" rel="noopener"><h3>维基文库</h3><p>公版古籍与经典原文免费阅读、下载，《红楼梦》等古典名著可直接看全文。</p><span class="tag">公版 · 全文</span></a>
       <a href="https://standardebooks.org" target="_blank" rel="noopener"><h3>Standard Ebooks</h3><p>精心排版的英文公版书免费下载，格式漂亮，无广告。</p><span class="tag">公版 · 英文</span></a>
       <a href="https://manybooks.net" target="_blank" rel="noopener"><h3>ManyBooks</h3><p>数万本公版书免费下载，支持多种电子书格式。</p><span class="tag">公版 · 下载</span></a>
@@ -168,12 +183,12 @@
     <span>长天书屋 · Longtian Books — 个人读书分享页</span>
     <span>本站全部免费，不销售图书、不保存电子书文件；书目信息仅供参考，请通过免费阅读与借阅入口阅读。</span>
   </div>
-  <div style="margin-top:8px">书单灵感来自日常阅读与网络公开推荐。本站内容如有侵权，请发邮件到站长邮箱 <a href="mailto:longtianxp@gmail.com" style="color:var(--link)">longtianxp@gmail.com</a>，核实后会第一时间处理。</div>
+  <div style="margin-top:8px">书单灵感来自日常阅读与网络公开推荐。本站站内全文均为公版作品，文本来源为维基文库（Wikisource）；本站内容如有侵权，请发邮件到站长邮箱 <a href="mailto:longtianxp@gmail.com" style="color:var(--link)">longtianxp@gmail.com</a>，核实后会第一时间处理。</div>
 </footer>
 
 <script>
 const BOOKS = [
- {t:"红楼梦",a:"曹雪芹",c:"文学小说",r:9.7,n:"12.4万",f:"精装 · 全二册",g:["#7a1f1f","#a63d2a"],b:"中国古典小说的巅峰，一部写尽世情与命运的百科全书，值得每隔十年重读一次。"},
+ {t:"红楼梦",a:"曹雪芹",c:"文学小说",r:9.7,n:"12.8万",f:"站内全文",slug:"hongloumeng",g:["#7a1f1f","#a63d2a"],b:"中国古典小说的巅峰，一部写尽世情与命运的百科全书，值得每隔十年重读一次。"},
  {t:"活着",a:"余华",c:"文学小说",r:9.4,n:"21.8万",f:"平装",g:["#274156","#4a6fa5"],b:"福贵的一生苦难深重，读完却只剩对生命的敬意。薄薄一本，后劲极大。"},
  {t:"百年孤独",a:"加西亚·马尔克斯",c:"文学小说",r:9.3,n:"15.6万",f:"精装",g:["#8a6d1d","#c9a227"],b:"布恩迪亚家族七代人的孤独轮回，魔幻现实主义的源头，名字多但绝对值得。"},
  {t:"平凡的世界",a:"路遥",c:"文学小说",r:9.0,n:"11.2万",f:"平装 · 全三册",g:["#5b4a2f","#8a6d3b"],b:"孙少安与孙少平的奋斗史，是给每一个普通人的励志书，朴素而有力量。"},
@@ -184,7 +199,7 @@ const BOOKS = [
  {t:"流浪地球",a:"刘慈欣",c:"科幻奇幻",r:8.8,n:"6.4万",f:"平装 · 短篇集",g:["#3a2b52","#5d439a"],b:"带着地球去流浪的中国式浪漫，同名电影的原作，短篇篇篇硬核。"},
  {t:"人类简史",a:"尤瓦尔·赫拉利",c:"历史人文",r:9.2,n:"16.8万",f:"平装",g:["#7a4a21","#b07a3f"],b:"从认知革命到科学革命，重新理解“虚构故事”如何塑造了人类社会。"},
  {t:"万历十五年",a:"黄仁宇",c:"历史人文",r:9.0,n:"8.9万",f:"平装",g:["#5a2d2d","#8a4a3a"],b:"1587，无关紧要的一年，却照见一个王朝的制度困局。大历史观的典范。"},
- {t:"明朝那些事儿",a:"当年明月",c:"历史人文",r:9.2,n:"13.5万",f:"平装",g:["#6e2f1d","#a34a28"],b:"把明史写成畅销小说的传奇，幽默通俗，是很多人爱上历史的起点。"},
+ {t:"明朝那些事儿",a:"当年明月",c:"历史人文",r:9.2,n:"13.5万",f:"平装",g:["#6e2f1d","#a34a28"],b:"把明史写得像小说一样好看的传奇，幽默通俗，是很多人爱上历史的起点。"},
  {t:"中国近代史",a:"徐中约",c:"历史人文",r:9.3,n:"4.1万",f:"精装",g:["#33424f","#5a7186"],b:"公认最扎实的中国近代史著作之一，视野宏大，叙述克制而清晰。"},
  {t:"未来简史",a:"尤瓦尔·赫拉利",c:"历史人文",r:8.5,n:"7.6万",f:"平装",g:["#14424e","#1f6a7d"],b:"当数据主义遇上智人，未来的人类将何去何从？发人深省又非常好读。"},
  {t:"穷查理宝典",a:"彼得·考夫曼 编",c:"经济管理",r:9.2,n:"5.8万",f:"精装",g:["#1f3d2b","#33691e"],b:"查理·芒格的思维模型合集多读几遍，对投资和人生的理解都会不一样。"},
@@ -197,7 +212,10 @@ const BOOKS = [
  {t:"被讨厌的勇气",a:"岸见一郎 · 古贺史健",c:"心理成长",r:8.6,n:"12.7万",f:"平装",g:["#716040","#a68a54"],b:"阿德勒心理学的对话体入门：“一切烦恼都来自人际关系”，扎心但治愈。"},
  {t:"非暴力沟通",a:"马歇尔·卢森堡",c:"心理成长",r:8.6,n:"6.3万",f:"平装",g:["#2d5a4a","#478a70"],b:"观察、感受、需要、请求四步法，把冲突说成连接，实用度极高。"},
  {t:"心流",a:"米哈里·契克森米哈赖",c:"心理成长",r:8.3,n:"4.9万",f:"平装",g:["#274156","#3f6d8e"],b:"最优体验的心理学：如何进入心流，让工作与生活都更有幸福感。"},
- {t:"少有人走的路",a:"M.斯科特·派克",c:"心理成长",r:8.4,n:"7.8万",f:"平装",g:["#4d3b2a","#7a5c3e"],b:"“人生苦难重重”，自律、爱与成长的经典心理读物，常读常新。"}
+ {t:"少有人走的路",a:"M.斯科特·派克",c:"心理成长",r:8.4,n:"7.8万",f:"平装",g:["#4d3b2a","#7a5c3e"],b:"“人生苦难重重”，自律、爱与成长的经典心理读物，常读常新。"},
+ {t:"三国演义",a:"罗贯中",c:"文学小说",r:9.5,n:"12.6万",f:"站内全文",slug:"sanguo",g:["#7a1f1f","#b03a2e"],b:"滚滚长江东逝水——群雄逐鹿、谋略人心的古典演义巅峰，点开即可在站内看全本一百二十回。"},
+ {t:"西游记",a:"吴承恩",c:"文学小说",r:9.6,n:"11.9万",f:"站内全文",slug:"xiyou",g:["#8a5a12","#c98f1f"],b:"师徒四人西天取经，降妖除魔背后的修心之路，点开即可在站内看全本一百回。"},
+ {t:"儒林外史",a:"吴敬梓",c:"文学小说",r:9.1,n:"4.3万",f:"站内全文",slug:"rulin",g:["#2e4a62","#4a7396"],b:"中国古代讽刺小说的高峰，一幅读书人与功名的众生相，点开即可在站内看全本五十六回。"}
 ];
 const CATS = ["全部","文学小说","历史人文","经济管理","科学技术","心理成长","科幻奇幻"];
 let cat="全部", favs=new Set(JSON.parse(localStorage.getItem("lt_favs")||"[]"));
@@ -221,14 +239,14 @@ function render(){
   $("#grid").innerHTML = list.length? list.map(b=>{
     const added=favs.has(b.t);
     return `<article class="book">
-      <div class="cover" style="background:linear-gradient(150deg,${b.g[0]},${b.g[1]})">
+      <div class="cover" style="background:linear-gradient(150deg,${b.g[0]},${b.g[1]});cursor:pointer" onclick="openBook(${BOOKS.indexOf(b)})" title="点开看书">
         <div class="pub">长天书屋 · 精选</div><div class="ct">${b.t}</div><div class="ca">${b.a} 著</div>
       </div>
       <h3>${b.t}</h3><div class="author">${b.a}</div>
       <div class="stars">${stars(b.r)} ${b.r}<span>${b.n} 条评价</span></div>
       <p class="blurb">${b.b}</p>
       <div class="fmt">${b.c} · ${b.f}</div>
-      <div class="free-actions"><a class="freebtn" href="https://weread.qq.com/web/search/books?keyword=${encodeURIComponent(b.t+' '+b.a)}" target="_blank" rel="noopener">📖 免费阅读</a><a class="freelink" href="https://openlibrary.org/search?q=${encodeURIComponent(b.t+' '+b.a)}" target="_blank" rel="noopener">借阅 / 下载</a></div>
+      <div class="free-actions">${b.slug?`<button class="freebtn" onclick="openReader('${b.slug}')">📖 站内阅读全文</button>`:`<button class="freebtn info" onclick="openInfo(${BOOKS.indexOf(b)})">📖 本书说明</button><a class="freelink" href="https://openlibrary.org/search?q=${encodeURIComponent(b.t+' '+b.a)}" target="_blank" rel="noopener">图书馆查借阅</a>`}</div>
       <button class="addbtn ${added?'added':''}" data-t="${b.t}">${added?'✓ 已在书单':'加入书单'}</button>
     </article>`;}).join("") : `<div class="empty">没有找到符合条件的书，换个关键词试试。</div>`;
   document.querySelectorAll(".addbtn").forEach(btn=>btn.onclick=()=>{
@@ -242,9 +260,62 @@ function render(){
 $("#qbtn").onclick=render;
 $("#q").addEventListener("input",render);
 $("#sort").onchange=render;
+
+const RDCACHE={}; let RDCUR=null, RDIDX=0, RDFONT=18;
+function openBook(i){ const b=BOOKS[i]; if(b.slug) openReader(b.slug); else openInfo(i); }
+async function openReader(slug){
+  const r=$("#reader"); r.classList.add("open");
+  $("#rdBody").innerHTML="正在加载全文…"; $("#rdChapter").style.display="none"; $("#rdFoot").style.display="none";
+  if(!RDCACHE[slug]){
+    try{ RDCACHE[slug]=await (await fetch("books/"+slug+".json")).json(); }
+    catch(e){ $("#rdBody").innerHTML="加载失败，请刷新页面重试。"; return; }
+  }
+  RDCUR=RDCACHE[slug]; RDIDX=0;
+  $("#rdTitle").textContent=RDCUR.title; $("#rdAuthor").textContent=RDCUR.author+" 著 · 全 "+RDCUR.chapters.length+" 回 · 文本来源：维基文库（公版）";
+  const sel=$("#rdChapter"); sel.innerHTML=RDCUR.chapters.map((c,i)=>`<option value="${i}">${c.name}</option>`).join("");
+  sel.style.display=""; sel.onchange=()=>{ RDIDX=+sel.value; rdRender(); };
+  $("#rdFoot").style.display=""; rdRender();
+}
+function rdRender(){
+  const c=RDCUR.chapters[RDIDX];
+  $("#rdChapter").value=RDIDX;
+  $("#rdPos").textContent="第 "+(RDIDX+1)+" / "+RDCUR.chapters.length+" 回";
+  $("#rdBody").style.fontSize=RDFONT+"px";
+  $("#rdBody").innerHTML="<h3>"+c.name+"</h3>"+c.paras.map(p=>"<p>"+p.replace(/</g,"&lt;")+"</p>").join("");
+  $("#rdBody").scrollTop=0;
+}
+function rdMove(d){ const n=RDIDX+d; if(n<0||n>=RDCUR.chapters.length) return; RDIDX=n; rdRender(); }
+function rdFont(d){ RDFONT=Math.min(24,Math.max(14,RDFONT+d)); $("#rdBody").style.fontSize=RDFONT+"px"; }
+function openInfo(i){
+  const b=BOOKS[i]; RDCUR=null;
+  $("#reader").classList.add("open");
+  $("#rdTitle").textContent=b.t; $("#rdAuthor").textContent=b.a;
+  $("#rdChapter").style.display="none"; $("#rdFoot").style.display="none";
+  $("#rdBody").style.fontSize="16px";
+  $("#rdBody").innerHTML="<h3>📖 本书说明</h3><p>"+b.b+"</p><p>这是一本现代版权作品，全文受版权保护，不能搬到网站上全文刊载——那样做就是侵权，网站会被投诉下架。本站的原则是只放能合法免费读的书。</p><p>想读这本，可以去非营利的开放图书馆查有没有借阅本：<a href=\"https://openlibrary.org/search?q="+encodeURIComponent(b.t+" "+b.a)+"\" target=\"_blank\" rel=\"noopener\">Open Library 查《"+b.t+"》</a>，或到中国国家图书馆查馆藏。等以后有公版或获授权的版本，站长会第一时间补上站内全文。</p>";
+}
+function closeReader(){ $("#reader").classList.remove("open"); }
+document.addEventListener("keydown",e=>{ if(e.key==="Escape") closeReader(); });
 $("#statBooks").textContent=BOOKS.length;
 renderCats(); renderRank(); render();
 </script>
+
+<div class="reader" id="reader">
+  <div class="reader-box">
+    <div class="reader-head">
+      <div><span class="rt" id="rdTitle"></span> <span class="ra" id="rdAuthor"></span></div>
+      <select id="rdChapter" style="display:none"></select>
+      <button onclick="rdFont(-1)">A-</button><button onclick="rdFont(1)">A+</button>
+      <button class="x" onclick="closeReader()">✕ 关闭</button>
+    </div>
+    <div class="reader-body" id="rdBody">正在加载…</div>
+    <div class="reader-foot" id="rdFoot" style="display:none">
+      <button onclick="rdMove(-1)">← 上一回</button>
+      <span id="rdPos" style="align-self:center;color:#6b6350;font-size:13px"></span>
+      <button onclick="rdMove(1)">下一回 →</button>
+    </div>
+  </div>
+</div>
 <script type="module">
   import { init } from 'https://unpkg.com/@waline/client@v3/dist/waline.js';
   init({
