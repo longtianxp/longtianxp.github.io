@@ -86,6 +86,7 @@
   footer .fl{ display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px; border-top:1px solid #d5d9d9; padding-top:16px; }
   @media (max-width:560px){ .cover{ height:180px; } .grid{ grid-template-columns:repeat(auto-fill,minmax(158px,1fr)); gap:12px; } }
 </style>
+<link rel="stylesheet" href="https://unpkg.com/@waline/client@v3/dist/waline.css">
 </head>
 <body>
 
@@ -152,6 +153,12 @@
       <a href="https://book.dangdang.com" target="_blank" rel="noopener"><h3>当当网</h3><p>老牌图书电商，中文图书品类深，教材教辅与童书尤其齐全。</p><span class="tag">购书 · 纸书</span></a>
       <a href="https://www.nlc.cn" target="_blank" rel="noopener"><h3>中国国家图书馆</h3><p>国家数字图书馆可在线查阅大量古籍、民国文献与学术资源，免费注册。</p><span class="tag">古籍 · 学术</span></a>
     </div>
+  </section>
+
+  <section class="section" id="comments">
+    <h2>💬 读者留言</h2>
+    <p class="sub">读过哪本、想推荐哪本，都可以在这里留言交流。留言会先保存到书站的评论后台，站长可以统一回复和管理。</p>
+    <div id="waline" style="margin-top:14px"></div>
   </section>
 
 </main>
@@ -239,6 +246,15 @@ $("#q").addEventListener("input",render);
 $("#sort").onchange=render;
 $("#statBooks").textContent=BOOKS.length;
 renderCats(); renderRank(); render();
+</script>
+<script type="module">
+  import { init } from 'https://unpkg.com/@waline/client@v3/dist/waline.js';
+  init({
+    el: '#waline',
+    serverURL: 'https://zmg-waline.vercel.app',
+    path: window.location.pathname,
+    lang: 'zh-CN',
+  });
 </script>
 </body>
 </html>
