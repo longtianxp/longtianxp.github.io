@@ -128,7 +128,7 @@
     <div class="stats">
       <div><b id="statBooks">25</b>本精选图书</div>
       <div><b>6</b>大分类</div>
-      <div><b>4</b>本站内可读全文</div>
+      <div><b id="statFull">4</b>本站内可读全文</div>
       <div><b>0</b>元，免费浏览</div>
     </div>
   </div>
@@ -215,7 +215,29 @@ const BOOKS = [
  {t:"少有人走的路",a:"M.斯科特·派克",c:"心理成长",r:8.4,n:"7.8万",f:"平装",g:["#4d3b2a","#7a5c3e"],b:"“人生苦难重重”，自律、爱与成长的经典心理读物，常读常新。"},
  {t:"三国演义",a:"罗贯中",c:"文学小说",r:9.5,n:"12.6万",f:"站内全文",slug:"sanguo",g:["#7a1f1f","#b03a2e"],b:"滚滚长江东逝水——群雄逐鹿、谋略人心的古典演义巅峰，点开即可在站内看全本一百二十回。"},
  {t:"西游记",a:"吴承恩",c:"文学小说",r:9.6,n:"11.9万",f:"站内全文",slug:"xiyou",g:["#8a5a12","#c98f1f"],b:"师徒四人西天取经，降妖除魔背后的修心之路，点开即可在站内看全本一百回。"},
- {t:"儒林外史",a:"吴敬梓",c:"文学小说",r:9.1,n:"4.3万",f:"站内全文",slug:"rulin",g:["#2e4a62","#4a7396"],b:"中国古代讽刺小说的高峰，一幅读书人与功名的众生相，点开即可在站内看全本五十六回。"}
+ {t:"儒林外史",a:"吴敬梓",c:"文学小说",r:9.1,n:"4.3万",f:"站内全文",slug:"rulin",g:["#2e4a62","#4a7396"],b:"中国古代讽刺小说的高峰，一幅读书人与功名的众生相，点开即可在站内看全本五十六回。"},
+ {t:"老残游记",a:"刘鹗",c:"文学小说",r:9.0,n:"3.6万",f:"站内全文",slug:"laocan",g:["#3d5a73","#5f87a8"],b:"清末游记小说的代表作，一个郎中眼中的晚清世相，点开即可在站内看全本二十回。"},
+ {t:"官场现形记",a:"李宝嘉",c:"文学小说",r:8.8,n:"5.1万",f:"站内全文",slug:"guanchang",g:["#5a4632","#8a6d4a"],b:"晚清谴责小说的巅峰，把官场百态扒得体无完肤，点开即可在站内看全本六十回。"},
+ {t:"二十年目睹之怪现状",a:"吴趼人",c:"文学小说",r:8.9,n:"4.8万",f:"站内全文",slug:"guaixianzhuang",g:["#4a3d5c","#77688f"],b:"以二十年见闻串起清末怪现状，讽刺入骨，点开即可在站内看全本一百零八回。"},
+ {t:"孽海花",a:"曾朴",c:"文学小说",r:8.6,n:"2.9万",f:"站内全文",slug:"niehaihua",g:["#6d2f45","#a34a68"],b:"晚清名妓与名士的交织史，文人笔下的时代变局，点开即可在站内看全本三十五回。"},
+ {t:"镜花缘",a:"李汝珍",c:"文学小说",r:8.7,n:"3.3万",f:"站内全文",slug:"jinghuayuan",g:["#2f5d50","#4a8a76"],b:"女儿国、君子国——清代最奇幻的游历小说，点开即可在站内看全本一百回。"},
+ {t:"封神演义",a:"许仲琳",c:"科幻奇幻",r:9.0,n:"8.2万",f:"站内全文",slug:"fengshen",g:["#5c2e2e","#96684a"],b:"姜子牙封神、商周易代的神魔大战，中国神话宇宙的源头，点开即可在站内看全本一百回。"},
+ {t:"隋唐演义",a:"褚人获",c:"文学小说",r:8.7,n:"4.5万",f:"站内全文",slug:"suitang",g:["#6e5636","#a37f47"],b:"秦琼、程咬金们的隋唐江湖，英雄与帝王交织，点开即可在站内看全本一百回。"},
+ {t:"骆驼祥子",a:"老舍",c:"文学小说",r:9.4,n:"9.7万",f:"站内全文",slug:"luotuo",g:["#44546a","#6b7f9e"],b:"老舍笔下北平车夫祥子的三起三落，现代文学的丰碑，点开即可在站内看全本二十四章。"},
+ {t:"警世通言",a:"冯梦龙",c:"文学小说",r:9.0,n:"3.1万",f:"站内全文",slug:"jingshi",g:["#704214","#a5713a"],b:"「三言」之一，四十个市井故事里的人情冷暖，点开即可在站内看全本四十卷。"},
+ {t:"喻世明言",a:"冯梦龙",c:"文学小说",r:9.0,n:"3.0万",f:"站内全文",slug:"yushi",g:["#59331f","#8a5a36"],b:"「三言」之首，蒋兴哥、杜十娘的故事都出自这里，点开即可在站内看全本四十卷。"},
+ {t:"聊斋志异",a:"蒲松龄",c:"文学小说",r:9.3,n:"7.9万",f:"站内全文",slug:"liaozhai",g:["#2e4038","#4d6b5c"],b:"狐仙鬼怪写尽人心，中国文言短篇的绝唱，本站收录全本十二卷。"},
+ {t:"东周列国志",a:"冯梦龙",c:"历史人文",r:9.0,n:"4.2万",f:"站内全文",slug:"dongzhou",g:["#54423a","#85705f"],b:"从西周亡国到秦并六国，五百年列国风云，点开即可在站内看全本一百零八回。"},
+ {t:"说岳全传",a:"钱彩",c:"历史人文",r:8.8,n:"3.8万",f:"站内全文",slug:"shuoyue",g:["#71361f","#ad6136"],b:"岳飞精忠报国的民间演义，牛头山、朱仙镇都在里面，点开即可在站内看全本八十回。"},
+ {t:"三国志",a:"陈寿",c:"历史人文",r:9.5,n:"6.8万",f:"站内全文",slug:"sanguozhi",g:["#37474f","#607d8b"],b:"陈寿正史原著，《三国演义》的史源，纪传体六十五卷全本可在站内读。"},
+ {t:"古文观止",a:"吴楚材、吴调侯 编",c:"历史人文",r:9.2,n:"5.5万",f:"站内全文",slug:"guwen",g:["#4e5d3a","#7a8c5c"],b:"二百多年口碑的古文选本，先秦到明末名篇尽览，本站收录全本十二卷。"},
+ {t:"论语",a:"孔子",c:"历史人文",r:9.5,n:"10.2万",f:"站内全文",slug:"lunyu",g:["#5d4037","#8d6e63"],b:"孔门言行录，中国人的处世底本，二十篇全本可在站内读。"},
+ {t:"孟子",a:"孟子",c:"历史人文",r:9.3,n:"4.6万",f:"站内全文",slug:"mengzi",g:["#455a64","#78909c"],b:"民为贵、社稷次之、君为轻，十四篇全本可在站内读。"},
+ {t:"庄子",a:"庄子",c:"历史人文",r:9.4,n:"5.9万",f:"站内全文",slug:"zhuangzi",g:["#33665a","#5c9684"],b:"逍遥游、齐物论——道家最汪洋恣肆的想象力，本站收录内、外、杂二十七篇。"},
+ {t:"浮生六记",a:"沈复",c:"文学小说",r:9.2,n:"6.1万",f:"站内全文",slug:"fusheng",g:["#7a4a56","#ad7280"],b:"沈复与芸娘的清代日常，被称作小红楼梦，六卷全本可在站内读。"},
+ {t:"呐喊",a:"鲁迅",c:"文学小说",r:9.6,n:"11.5万",f:"站内全文",slug:"nahan",g:["#3a3a3a","#6e6e6e"],b:"狂人日记、阿Q正传、故乡——现代文学的开山之作，十五篇全本可在站内读。"},
+ {t:"彷徨",a:"鲁迅",c:"文学小说",r:9.4,n:"8.8万",f:"站内全文",slug:"panghuang",g:["#424242","#757575"],b:"祝福、伤逝、在酒楼上——鲁迅第二部小说集，本站收录十篇。"},
+ {t:"朝花夕拾",a:"鲁迅",c:"文学小说",r:9.3,n:"7.4万",f:"站内全文",slug:"zhaohua",g:["#5f5245","#8f7d68"],b:"从百草园到三味书屋，鲁迅回忆散文集，本站收录九篇。"}
 ];
 const CATS = ["全部","文学小说","历史人文","经济管理","科学技术","心理成长","科幻奇幻"];
 let cat="全部", favs=new Set(JSON.parse(localStorage.getItem("lt_favs")||"[]"));
@@ -271,7 +293,7 @@ async function openReader(slug){
     catch(e){ $("#rdBody").innerHTML="加载失败，请刷新页面重试。"; return; }
   }
   RDCUR=RDCACHE[slug]; RDIDX=0;
-  $("#rdTitle").textContent=RDCUR.title; $("#rdAuthor").textContent=RDCUR.author+" 著 · 全 "+RDCUR.chapters.length+" 回 · 文本来源：维基文库（公版）";
+  $("#rdTitle").textContent=RDCUR.title; $("#rdAuthor").textContent=RDCUR.author+" 著 · 全 "+RDCUR.chapters.length+" "+(RDCUR.unit||"回")+" · 文本来源：维基文库（公版）";
   const sel=$("#rdChapter"); sel.innerHTML=RDCUR.chapters.map((c,i)=>`<option value="${i}">${c.name}</option>`).join("");
   sel.style.display=""; sel.onchange=()=>{ RDIDX=+sel.value; rdRender(); };
   $("#rdFoot").style.display=""; rdRender();
@@ -279,7 +301,7 @@ async function openReader(slug){
 function rdRender(){
   const c=RDCUR.chapters[RDIDX];
   $("#rdChapter").value=RDIDX;
-  $("#rdPos").textContent="第 "+(RDIDX+1)+" / "+RDCUR.chapters.length+" 回";
+  $("#rdPos").textContent="第 "+(RDIDX+1)+" / "+RDCUR.chapters.length+" "+(RDCUR.unit||"回"); $("#rdPrev").textContent="← 上一"+(RDCUR.unit||"回"); $("#rdNext").textContent="下一"+(RDCUR.unit||"回")+" →";
   $("#rdBody").style.fontSize=RDFONT+"px";
   $("#rdBody").innerHTML="<h3>"+c.name+"</h3>"+c.paras.map(p=>"<p>"+p.replace(/</g,"&lt;")+"</p>").join("");
   $("#rdBody").scrollTop=0;
@@ -296,7 +318,7 @@ function openInfo(i){
 }
 function closeReader(){ $("#reader").classList.remove("open"); }
 document.addEventListener("keydown",e=>{ if(e.key==="Escape") closeReader(); });
-$("#statBooks").textContent=BOOKS.length;
+$("#statBooks").textContent=BOOKS.length; $("#statFull").textContent=BOOKS.filter(b=>b.slug).length;
 renderCats(); renderRank(); render();
 </script>
 
@@ -310,9 +332,9 @@ renderCats(); renderRank(); render();
     </div>
     <div class="reader-body" id="rdBody">正在加载…</div>
     <div class="reader-foot" id="rdFoot" style="display:none">
-      <button onclick="rdMove(-1)">← 上一回</button>
+      <button id="rdPrev" onclick="rdMove(-1)">← 上一回</button>
       <span id="rdPos" style="align-self:center;color:#6b6350;font-size:13px"></span>
-      <button onclick="rdMove(1)">下一回 →</button>
+      <button id="rdNext" onclick="rdMove(1)">下一回 →</button>
     </div>
   </div>
 </div>
