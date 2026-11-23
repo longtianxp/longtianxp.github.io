@@ -152,15 +152,16 @@
         </select>
       </label>
     </div>
-    <p class="sub">封面为样式示意；评分为读者口碑参考。本站全部免费：每本书都带免费阅读 / 借阅入口，不卖书、不收费。</p>
+    <p class="sub">封面为样式示意；评分为读者口碑参考。本站不卖书、不收费：有站内全文的直接读，没有全文的每本书都带微信读书入口。</p>
     <div class="grid" id="grid"></div>
   </section>
 
   <section class="section">
     <h2>🧭 找书资源 · 正规入口</h2>
-    <p class="sub">站内没有全文的书，可以从这些非营利渠道找：能在线读、能借阅、能下载公版书的都有，全部免费。</p>
+    <p class="sub">站内没有全文的书，可以从这些渠道找：微信读书在线看中文书，公版书去古登堡、维基文库免费下载，纸书去当地公共图书馆借。</p>
     <div class="res">
-      <a href="https://openlibrary.org" target="_blank" rel="noopener"><h3>Open Library 开放图书馆</h3><p>互联网档案馆旗下的开放书目库，可查版本、借阅部分电子书，书目信息最全。</p><span class="tag">查书目 · 借阅</span></a>
+      <a href="https://weread.qq.com" target="_blank" rel="noopener"><h3>微信读书</h3><p>中文书最全的正版阅读平台，本站绝大多数现代书都能在那里搜到，不少可免费阅读或试读，会员可读全本。</p><span class="tag">中文书 · 在线阅读</span></a>
+      <a href="https://openlibrary.org" target="_blank" rel="noopener"><h3>Open Library 开放图书馆</h3><p>互联网档案馆旗下的开放书目库，以英文书为主，可查版本、借阅部分英文电子书；中文书很少，别指望在那里借到中文书。</p><span class="tag">英文书 · 查书目</span></a>
       <a href="https://www.gutenberg.org" target="_blank" rel="noopener"><h3>Project Gutenberg 古登堡计划</h3><p>七万多本公版经典免费下载，英文原著与世界名著的宝库，完全合法。</p><span class="tag">公版书 · 免费</span></a>
       <a href="https://archive.org" target="_blank" rel="noopener"><h3>Internet Archive 互联网档案馆</h3><p>海量书籍、影音与网页存档，部分图书可在线借阅，老书绝版书常有惊喜。</p><span class="tag">存档 · 借阅</span></a>
       <a href="https://zh.wikisource.org" target="_blank" rel="noopener"><h3>维基文库</h3><p>公版古籍与经典原文免费阅读、下载，《红楼梦》等古典名著可直接看全文。</p><span class="tag">公版 · 全文</span></a>
@@ -347,7 +348,7 @@ function render(){
       <div class="stars">${stars(b.r)} ${b.r}<span>${b.n}</span></div>
       <p class="blurb">${b.b}</p>
       <div class="fmt">${b.c} · ${b.f}</div>
-      <div class="free-actions">${b.slug?`<button class="freebtn" onclick="openReader('${b.slug}')">📖 站内阅读全文</button>`:`<button class="freebtn info" onclick="openInfo(${BOOKS.indexOf(b)})">📖 本书说明</button><a class="freelink" href="https://openlibrary.org/search?q=${encodeURIComponent(b.t+' '+b.a)}" target="_blank" rel="noopener">图书馆查借阅</a>`}</div>
+      <div class="free-actions">${b.slug?`<button class="freebtn" onclick="openReader('${b.slug}')">📖 站内阅读全文</button>`:`<button class="freebtn info" onclick="openInfo(${BOOKS.indexOf(b)})">📖 本书说明</button><a class="freelink" href="https://weread.qq.com/web/search/books?keyword=${encodeURIComponent(b.t+' '+b.a)}" target="_blank" rel="noopener">微信读书看这本</a>`}</div>
       <button class="addbtn ${added?'added':''}" data-t="${b.t}">${added?'✓ 已在书单':'加入书单'}</button>
     </article>`;}).join("") : `<div class="empty">没有找到符合条件的书，换个关键词试试。</div>`;
   document.querySelectorAll(".addbtn").forEach(btn=>btn.onclick=()=>{
@@ -393,7 +394,7 @@ function openInfo(i){
   $("#rdTitle").textContent=b.t; $("#rdAuthor").textContent=b.a;
   $("#rdChapter").style.display="none"; $("#rdFoot").style.display="none";
   $("#rdBody").style.fontSize="16px";
-  $("#rdBody").innerHTML="<h3>📖 本书说明</h3><p>"+b.b+"</p><p>这是一本现代版权作品，全文受版权保护，不能搬到网站上全文刊载——那样做就是侵权，网站会被投诉下架。本站的原则是只放能合法免费读的书。</p><p>想读这本，可以去非营利的开放图书馆查有没有借阅本：<a href=\"https://openlibrary.org/search?q="+encodeURIComponent(b.t+" "+b.a)+"\" target=\"_blank\" rel=\"noopener\">Open Library 查《"+b.t+"》</a>，或到中国国家图书馆查馆藏。等以后有公版或获授权的版本，站长会第一时间补上站内全文。</p>";
+  $("#rdBody").innerHTML="<h3>📖 本书说明</h3><p>"+b.b+"</p><p>这是一本现代版权作品，全文受版权保护，不能搬到网站上全文刊载——那样做就是侵权，网站会被投诉下架。本站的原则是只放能合法免费读的书。</p><p>想读这本，最实在的路是微信读书：<a href=\"https://weread.qq.com/web/search/books?keyword="+encodeURIComponent(b.t+" "+b.a)+"\" target=\"_blank\" rel=\"noopener\">微信读书搜《"+b.t+"》</a>——站内绝大多数书在那里都有正版电子版，不少可免费阅读或试读，会员可读全本。想借纸书，就带读者证去当地公共图书馆借，那是真借阅。等以后有公版或获授权的版本，站长会第一时间补上站内全文。</p>";
 }
 function closeReader(){ $("#reader").classList.remove("open"); }
 document.addEventListener("keydown",e=>{ if(e.key==="Escape") closeReader(); });
